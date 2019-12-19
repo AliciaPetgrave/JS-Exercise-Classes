@@ -83,9 +83,17 @@ class Car {
   fill(gallons){
     return (this.tank += gallons);
   }
-  drive(distance){
-    if (this.tank = 0)
-    return `I ran out of fuel at ${this.odometer} miles!`
+  drive(distance) {
+    let fuelUsed = distance / this.milesPerGallon;
+    let milesAvailable = this.tank * this.milesPerGallon;
+    if (this.tank >= fuelUsed) {
+      this.odometer += distance;
+      this.tank -= fuelUsed;
+    } else {
+      this.odometer += milesAvailable;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
   }
 }
 
@@ -126,8 +134,10 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
+class Instructor extends Lambdasian{
+  constructor({name, age, location, specialty, favLanguage, catchPhrase}){
+    super(name, age, location)
+  }
 }
 
 /*
